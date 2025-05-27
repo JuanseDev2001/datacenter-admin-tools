@@ -61,6 +61,40 @@ function Apagar {
     Stop-Computer
 }
 
+
+
+function Ver-Backups {
+    $destino = "C:\Backups"
+    if (-Not (Test-Path $destino)) {
+        Write-Host "No existe la carpeta de backups ($destino)."
+        return
+    }
+    $backups = Get-ChildItem -Path $destino -Filter *.zip | 
+               Select-Object Name, @{Name="FechaCreacion";Expression={$_.CreationTime}} |
+               Sort-Object FechaCreacion -Descending
+    if ($backups.Count -eq 0) {
+        Write-Host "No se encontraron backups en $destino."
+    } else {
+        $backups | Format-Table -AutoSize
+    }
+}
+
+function Show-Menu {
+    Clear-Host
+    Write-Host "===== Herramienta Administrativa (PowerShell) ====="
+    Write-Host "1. Listar procesos"
+    Write-Host "2. 5 procesos que mas consumen CPU"
+    Write-Host "3. 5 procesos que mas consumen memoria"
+    Write-Host "4. Terminar un proceso"
+    Write-Host "5. Listar usuarios"
+    Write-Host "6. Usuarios segun vejez de password"
+    Write-Host "7. Cambiar password de usuario"
+    Write-Host "8. Backup de usuarios"
+    Write-Host "9. Apagar equipo"
+    Write-Host "10. Ver backups de usuarios"
+    Write-Host "0. Salir"
+}
+
 do {
     Show-Menu
     $op = Read-Host "Selecciona una opcion"
@@ -74,6 +108,7 @@ do {
         "7" { Cambiar-Contraseña }
         "8" { Backup-Usuarios }
         "9" { Apagar }
+        "10" { Ver-Backups }
     }
     Pause
 } while ($op -ne "0")
