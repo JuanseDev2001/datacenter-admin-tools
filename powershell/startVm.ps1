@@ -2,7 +2,7 @@
 
 $vmIP = "52.255.237.235"
 $port = 3389
-$pollingUrl = "http://localhost:3000/api/azure"
+$pollingUrl = "https://back.ticktopia.shop/api/azure"
 
 Write-Host "Verificando conexión RDP (${vmIP}:${port})..."
 
