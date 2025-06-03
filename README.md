@@ -109,7 +109,7 @@ Enter number to select an option: 15
 Ahora ya puedes correr el script de administración con
 
 ```sh
-.\vim\adminTools.ps1
+.\adminTools.ps1
 ```
 
 
