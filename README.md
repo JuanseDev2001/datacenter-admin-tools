@@ -13,6 +13,9 @@ cd bash
 Si esta la primera vez que abres el proyecto, tienes que darle permisos de ejecución al script con
 
 ```sh
+sudo apt update
+sudo apt install curl
+chmod 600 linuxvm.perm
 chmod +x connect.sh
 ```
 
